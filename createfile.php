@@ -1,32 +1,32 @@
 <?php
-//Copyright 2015 A Cloud Guru
+//Copyright 2018 SumitAWS
 
 //Connection string
 include 'connecttoaws.php';
 
-/*
-Files in Amazon S3 are called "objects" and are stored in buckets. A specific
-object is referred to by its key (or name) and holds data. In this file
-we create an object called acloudguru.txt that contains the data 
-'Hello Cloud Gurus!'
-and we upload/put it into our newly created bucket.
-*/
-
 //get the bucket name
-$bucket = $_GET["bucket"];
+$bucket1 = $_GET["bucket1"];
+$bucket2=  $_GET["bucket2"];
 
 //create the file name
-$key = 'sumitTestfile.txt';
+$key1 = 'index.html';
+$key2 = 'home.html';
 
 //put the file and data in our bucket
-$result = $client->putObject(array(
-    'Bucket' => $bucket,
-    'Key'    => $key,
-    'Body'   => "Hello Guys! How are you<br>can i break this line"
+$result1 = $client->putObject(array(
+    'Bucket' => $bucket1,
+    'Key'    => $key1,
+    'Body'   => "Hello Guys!--This is bucket1 content"
 ));
 
+$result2 = $client->putObject(array(
+    'Bucket' => $bucket2,
+    'Key' => $key2,
+    'Body' => "Hey Guys!!--This is bucket2 content"
+    ));
+
 //HTML to create our webpage
-echo "<h2 align=\"center\">File - $key has been successfully uploaded to $bucket</h2>";
-echo "<div align = \"center\"><img src=\"http://www.pmindia.gov.in/wp-content/uploads/2014/06/High1.jpg\"></img></div>";
-echo "<div align = \"center\"><a href=\"readfile.php?bucket=$bucket&key=$key\">Click Here To Read Your File</a></div>";
+echo "<h2 align=\"center\">File - $key has been successfully uploaded to $bucket1 and $bucket2 </h2>";
+echo "<div align = \"center\" width=\"40\" height=\"20\"><img src=\"http://www.pmindia.gov.in/wp-content/uploads/2014/06/High1.jpg\"></img></div>";
+echo "<div align = \"center\"><a href=\"readfile.php?bucket1=$bucket1&key1=$key1&bucket2=$bucket2&key2=$key2\">Click Here To Read Your File of both the bucket</a></div>";
 ?>
