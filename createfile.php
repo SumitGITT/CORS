@@ -16,7 +16,9 @@ $key2 = 'home.html';
 $result1 = $client->putObject(array(
     'Bucket' => $bucket1,
     'Key'    => $key1,
-    'Body'   => "Hello Guys!--This is bucket1 content"
+    'Body'   => "Hello Guys!--This is bucket1 content<br>
+        
+    "
 ));
 
 $result2 = $client->putObject(array(
