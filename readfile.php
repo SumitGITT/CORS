@@ -3,13 +3,16 @@
 include 'connecttoaws.php';
 
 //code to get our bucket and key names
-$bucket = $_GET["bucket"];
-$key = $_GET["key"];
+$bucket1 = $_GET["bucket1"];
+$bucket2 = $_GET["bucket2"];
+
+$key1= $_GET["key1"];
+$key2 = $_GET["key2"];
 
 //code to read the file on S3
 $result = $client->getObject(array(
-    'Bucket' => $bucket,
-    'Key'    => $key
+    'Bucket' => $bucket1,
+    'Key'    => $key1
 ));
 $data = $result['Body'];
 
@@ -17,6 +20,5 @@ $data = $result['Body'];
 echo "<h2 align=\"center\">The Bucket is $bucket</h2>";
 echo "<h2 align=\"center\">The Object's name is $key</h2>";
 echo "<h2 align=\"center\">The Data in the object is $data</h2>";
-echo "<div align = \"center\"><img src=\"https://acloud.guru/images/logo-small-optimised.png\"></img></div>";
 echo "<div align = \"center\"><a href=\"cleanup.php?bucket=$bucket&key=$key\">Click Here To Remove Files & Bucket</a></div>";
 ?>
